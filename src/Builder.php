@@ -18,7 +18,7 @@ class Builder
 	public function setBaseUrl($url = null)
 	{
 		if (empty($url)) {
-			$this->base_url = dirname($_SERVER['SCRIPT_NAME']) . '/';
+			$url = dirname($_SERVER['SCRIPT_NAME']) . '/';
 		}
 
 		$this->base_url = $url;
