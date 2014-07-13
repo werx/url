@@ -48,7 +48,7 @@ class Builder
 		}
 	}
 
-	public function action($uri, $params = [])
+	public function action($uri = null, $params = [])
 	{
 		$template = new UriTemplate($this->getBaseUrl(true));
 
@@ -73,7 +73,7 @@ class Builder
 		return $template->expand($resource, $params);
 	}
 
-	public function query($uri, $params = [])
+	public function query($uri = null, $params = [])
 	{
 		$uri = '/' . trim($uri, '/');
 
