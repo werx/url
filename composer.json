@@ -25,7 +25,7 @@
 	"autoload":	{
 		"psr-4": {
 			"werx\\Url\\": "src/",
-            "werx\\Url\\Extensions\\": "src/Extensions",
+            "werx\\Url\\Extensions\\": "src/extensions",
             "werx\\Url\\Tests\\": "tests/"
 		}
 	}
