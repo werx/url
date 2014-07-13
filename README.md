@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/werx/url.png?branch=master)](https://travis-ci.org/werx/url) [![Total Downloads](https://poser.pugx.org/werx/url/downloads.png)](https://packagist.org/packages/werx/url) [![Latest Stable Version](https://poser.pugx.org/werx/url/v/stable.png)](https://packagist.org/packages/werx/url)
 
-Build urls to actions in your app. Available as a standalone library or as a [Plates Extension](http://platesphp.com/extensions/).
+Build urls to resources in your app. Available as a standalone library or as a [Plates Extension](http://platesphp.com/extensions/).
 
 This library uses [rize\UriTemplate](https://github.com/rize/UriTemplate) for the heavy lifting of expanding urls with additional functionality to make it easier to build urls to resources within your application.
 

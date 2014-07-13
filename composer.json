@@ -2,7 +2,7 @@
 	"name": "werx/url",
 	"type": "library",
 	"license": "MIT",
-	"description": "Build urls to actions in your app",
+	"description": "Build urls to resources in your app",
 
 	"authors":[
 		{
