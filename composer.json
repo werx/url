@@ -1,0 +1,31 @@
+{
+	"name": "werx/url",
+	"type": "library",
+	"license": "MIT",
+	"description": "Build urls to actions in your app",
+
+	"authors":[
+		{
+			"name": "Josh Moody",
+			"email": "jgmoody@gmail.com"
+		}
+	],
+	    
+    "require": {
+    	"php": ">= 5.4",
+        "rize/uri-template": "0.2.*",
+        "league/plates": "2.*"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "squizlabs/php_codesniffer": "1.*"
+    },
+        	
+	"autoload":	{
+		"psr-4": {
+			"werx\\Url\\": "src/",
+            "werx\\Url\\Tests\\": "tests/"
+		}
+	}
+}
