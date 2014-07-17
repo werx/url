@@ -52,15 +52,21 @@ class Builder
 	{
 		$template = new UriTemplate($this->getBaseUrl(true));
 
-		$uri = '/' . ltrim($uri, '/');
+		$uri = '/' . trim($uri, '/');
 
 		// Build a url using string replacements in a pattern.
-		if ((is_string($params) || is_int($params)) && preg_match('/\{id\}/', $uri)) {
-			# /app/index.php/home/details/1
-			return $template->expand($uri, ['id' => $params]);
-		} else {
-			# /app/index.php/home/search?foo=bar
+		if (is_array($params)) {
 			return $template->expand($uri, $params);
+		} elseif ((is_string($params) || is_int($params))) {
+
+			if (preg_match('/\{id\}/', $uri)) {
+				# /app/index.php/home/details/1
+				return $template->expand($uri, ['id' => $params]);
+			} else {
+				return $template->expand(rtrim($uri, '/') . '/' . $params);
+			}
+		} else {
+			throw new \Exception('Invalid params');
 		}
 	}
 

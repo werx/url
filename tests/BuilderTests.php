@@ -16,28 +16,51 @@ class BuilderTests extends \PHPUnit_Framework_TestCase
 		$this->assertEquals('http://www.example.com/app/index.php/home/index', $builder->action('{controller}/{action}', ['controller'=>'home', 'action' => 'index']));
 	}
 
-	public function testCanGenerateActionUrlWithId()
+
+	public function testCanGenerateRelativeActionUrlWithId()
+	{
+		$builder = $this->getBuilderRootRelativeUrl();
+		$expected = '/app/index.php/home/details/1';
+		$this->subtestCanGenerateActionUrlWithId($expected, $builder);
+	}
+
+	public function testCanGenerateAbsoluteActionUrlWithId()
+	{
+		$builder = $this->getBuilderAbsoluteUrl();
+		$expected = 'http://www.example.com/app/index.php/home/details/1';
+		$this->subtestCanGenerateActionUrlWithId($expected, $builder);
+	}
+
+	public function subtestCanGenerateActionUrlWithId($expected, $builder)
+	{
+		# With leading slash
+		$this->assertEquals($expected, $builder->action('/home/details/{id}', 1));
+		$this->assertEquals($expected, $builder->action('/home/details/{id}', '1'));
+		$this->assertEquals($expected, $builder->action('/home/details/', 1));
+		$this->assertEquals($expected, $builder->action('/home/details/', '1'));
+		$this->assertEquals($expected, $builder->action('/home/details', 1));
+		$this->assertEquals($expected, $builder->action('/home/details', '1'));
+	}
+
+	/**
+	 * @expectedException Exception
+	 * @expectedExceptionMessage Invalid params
+	 */
+	public function testInvalidActionParamsShouldThrowException()
 	{
 		$builder = $this->getBuilderRootRelativeUrl();
 
-		# With leading slash
-		$this->assertEquals('/app/index.php/home/details/1', $builder->action('/home/details/{id}', 1));
-		$this->assertEquals('/app/index.php/home/details/1', $builder->action('/home/details/{id}', '1'));
+		$params = new \stdClass();
+		$builder->action('home/details/', $params);
+	}
 
-		# Without leading slash
-		$this->assertEquals('/app/index.php/home/details/1', $builder->action('home/details/{id}', 1));
-		$this->assertEquals('/app/index.php/home/details/1', $builder->action('home/details/{id}', '1'));
+	public function testGenerateActionUrlWithNullParams()
+	{
+		$builder = $this->getBuilderRootRelativeUrl();
+		$expected = '/app/index.php/home/details';
 
-		$builder = $this->getBuilderAbsoluteUrl();
-
-		# With leading slash
-		$this->assertEquals('http://www.example.com/app/index.php/home/details/1', $builder->action('/home/details/{id}', 1));
-		$this->assertEquals('http://www.example.com/app/index.php/home/details/1', $builder->action('/home/details/{id}', '1'));
-
-		# Without leading slash
-		$this->assertEquals('http://www.example.com/app/index.php/home/details/1', $builder->action('home/details/{id}', 1));
-		$this->assertEquals('http://www.example.com/app/index.php/home/details/1', $builder->action('home/details/{id}', '1'));
-
+		$this->assertEquals($expected, $builder->action('home/details/'));
+		$this->assertEquals($expected, $builder->action('home/details'));
 	}
 
 	public function testCanGenerateActionUrlWithQueryString()
