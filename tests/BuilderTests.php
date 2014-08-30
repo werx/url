@@ -16,7 +16,6 @@ class BuilderTests extends \PHPUnit_Framework_TestCase
 		$this->assertEquals('http://www.example.com/app/index.php/home/index', $builder->action('{controller}/{action}', ['controller'=>'home', 'action' => 'index']));
 	}
 
-
 	public function testCanGenerateRelativeActionUrlWithId()
 	{
 		$builder = $this->getBuilderRootRelativeUrl();
@@ -75,7 +74,7 @@ class BuilderTests extends \PHPUnit_Framework_TestCase
 
 	}
 
-	public function testCanGenerateAssetUr()
+	public function testCanGenerateAssetUrl()
 	{
 		$builder = $this->getBuilderRootRelativeUrl();
 		$this->assertEquals('/app/images/foo.jpg', $builder->asset('/images/foo.jpg'));
@@ -84,6 +83,14 @@ class BuilderTests extends \PHPUnit_Framework_TestCase
 		$builder = $this->getBuilderAbsoluteUrl();
 		$this->assertEquals('http://www.example.com/app/images/foo.jpg', $builder->asset('/images/foo.jpg'));
 		$this->assertEquals('http://www.example.com/app/images/foo.jpg', $builder->asset('images/foo.jpg'));
+	}
+
+	public function testCanGenerateRootActionUrl()
+	{
+		$builder = $this->getBuilderRootRelativeUrl();
+
+		$this->assertEquals('/app/index.php', $builder->action('/'));
+		$this->assertEquals('/app/index.php', $builder->action());
 	}
 
 	public function getBuilderAbsoluteUrl()

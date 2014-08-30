@@ -50,6 +50,10 @@ class Builder
 
 	public function action($uri = null, $params = [])
 	{
+		if ($uri == '/' || empty($uri)) {
+			return $this->getBaseUrl(true);
+		}
+
 		$template = new UriTemplate($this->getBaseUrl(true));
 
 		$uri = '/' . trim($uri, '/');
