@@ -71,17 +71,11 @@ Then in your view, you can call any of the `werx\Url\Builder` methods via `$this
 <img src="<?=$this->url()->asset('images/logo.png')?>"/>
 ```
 
-
 ## Installation
-This is installable and autoloadable via Composer as [werx/url](https://packagist.org/packages/werx/url). If you aren't familiar with the Composer Dependency Manager for PHP, [you should read this first](https://getcomposer.org/doc/00-intro.md).
+This package is installable and autoloadable via Composer as [werx/url](https://packagist.org/packages/werx/url). If you aren't familiar with the Composer Dependency Manager for PHP, [you should read this first](https://getcomposer.org/doc/00-intro.md).
 
-Example composer.json
-``` json
-{
-	"require": {
-		"werx/url": "dev-master"
-	}
-}
+```bash
+$ composer require werx/url --prefer-dist
 ```
 
 ## Contributing
