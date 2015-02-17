@@ -8,11 +8,13 @@ class Builder
 {
 	public $base_url = null;
 	public $script_name = null;
+	public $include_script_name = true;
 
-	public function __construct($url = null, $script_name = null)
+	public function __construct($url = null, $script_name = null, $include_script_name = true)
 	{
 		$this->setBaseUrl($url);
 		$this->setScriptName($script_name);
+		$this->include_script_name = $include_script_name;
 	}
 
 	public function setBaseUrl($url = null)
@@ -51,10 +53,10 @@ class Builder
 	public function action($uri = null, $params = [])
 	{
 		if ($uri == '/' || empty($uri)) {
-			return $this->getBaseUrl(true);
+			return $this->getBaseUrl($this->include_script_name);
 		}
 
-		$template = new UriTemplate($this->getBaseUrl(true));
+		$template = new UriTemplate($this->getBaseUrl($this->include_script_name));
 
 		$uri = '/' . trim($uri, '/');
 
@@ -88,6 +90,6 @@ class Builder
 		$uri = '/' . trim($uri, '/');
 
 		# http://example.com/app/index.php/home/search?name=Josh
-		return $this->getBaseUrl(true) . $uri . '?' . http_build_query($params);
+		return $this->getBaseUrl($this->include_script_name) . $uri . '?' . http_build_query($params);
 	}
 }
