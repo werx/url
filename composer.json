@@ -14,7 +14,7 @@
     "require": {
     	"php": ">= 5.4",
         "rize/uri-template": "0.2.*",
-        "league/plates": "2.1.0"
+        "league/plates": "~3.1.0"
     },
 
     "require-dev": {
@@ -27,6 +27,12 @@
 			"werx\\Url\\": "src/",
             "werx\\Url\\Extensions\\": "src/extensions",
             "werx\\Url\\Tests\\": "tests/"
+		}
+	},
+
+	"extra": {
+		"branch-alias": {
+			"dev-develop-2": "2.0.x-dev"
 		}
 	}
 }

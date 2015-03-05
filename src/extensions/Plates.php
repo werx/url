@@ -2,15 +2,27 @@
 
 namespace werx\Url\Extensions;
 
-class Plates extends \werx\Url\Builder implements \League\Plates\Extension\ExtensionInterface
+use League\Plates\Engine;
+use League\Plates\Extension\ExtensionInterface;
+
+class Plates extends \werx\Url\Builder implements ExtensionInterface
 {
-	public function getFunctions()
+	public function register(Engine $engine)
 	{
-		return ['url' => 'getUrlObject'];
+		$engine->registerFunction('url', [$this, 'getUrlObject']);
 	}
 
 	public function getUrlObject()
 	{
 		return $this;
+	}
+
+	/**
+	 * Get the defined extension functions.
+	 * @return array
+	 */
+	public function getFunctions()
+	{
+		return ['url' => 'getUrlObject'];
 	}
 }

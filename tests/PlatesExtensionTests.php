@@ -10,7 +10,8 @@ class PlatesExtensionTests extends \PHPUnit_Framework_TestCase
 		$ext = new \werx\Url\Extensions\Plates;
 		$engine->loadExtension($ext);
 
-		$template = new \League\Plates\Template($engine);
+		//$template = new \League\Plates\Template($engine);
+		$template = new \League\Plates\Template\Template($engine, 'main');
 
 		$this->assertTrue(method_exists($template->url(), 'action'), 'The action method from werx\Url\Builder should be available');
 	}

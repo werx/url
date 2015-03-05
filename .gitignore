@@ -3,4 +3,4 @@
 composer.lock
 vendor
 .idea
-coverage-report
+tests/coverage-report
